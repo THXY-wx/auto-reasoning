@@ -1,0 +1,12 @@
+- insert:
+    - id: auto-reasoning-effort
+      name: '@local/dsh-auto-reasoning'
+      config:
+        enabled: true
+        defaultAuto: true
+        scope: root
+        efforts:
+          easy: low
+          normal: high
+          hard: max
+        fallback: ladder

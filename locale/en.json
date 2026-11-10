@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Auto reasoning effort",
+    "description": "Sets each model step's reasoning effort from the question's difficulty, with an Auto level in the picker."
+  }
+}
