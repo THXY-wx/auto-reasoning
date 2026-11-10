@@ -313,7 +313,7 @@ window.__ModuleLoader__.load({
     }
 
     function registerDictionaries(ctx) {
-      const locale = ctx.get('locale')
+      const locale = ctx.locale ?? ctx.get?.('locale')
       if (locale === undefined || locale === null) return
       const dictionaries = {
         en: {
@@ -339,8 +339,8 @@ window.__ModuleLoader__.load({
     }
 
     function registerSettingsRow(ctx) {
-      const slots = ctx.get('slots')
-      const locale = ctx.get('locale')
+      const slots = ctx.slots ?? ctx.get?.('slots')
+      const locale = ctx.locale ?? ctx.get?.('locale')
       if (slots === undefined || slots === null || locale === undefined || locale === null) return
       const t = locale.bind(NS)
       const subscribeLocale = (callback) => locale.subscribe(callback)
@@ -458,6 +458,9 @@ window.__ModuleLoader__.load({
     }
 
     return {
+      // The client plugin context only exposes declared services through
+      // `ctx.slots` / `ctx.locale`; `modelDirectories` is resolved dynamically.
+      inject: ['slots', 'locale'],
       apply,
       // Exposed for the package's own logic tests; the client loader ignores it.
       __test: { AUTO_EFFORT, decorateSnapshot, installDirectoryPatch, withAutoEffort, wrapDirectory },
